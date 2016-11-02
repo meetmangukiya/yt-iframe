@@ -14,4 +14,8 @@ def root():     # TMP
             
 @app.route('/play')
 def play():
-    return render_template()    # TODO -- Has to be implemented
+    ids = request.args.getlist('id')
+    return render_template('index.html', ids=ids)
+
+if __name__ == "__main__":
+    app.run(debug=True)
