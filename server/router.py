@@ -1,7 +1,7 @@
 # The name `main.py` will also probably change, it is not permanent! 
 # TMP
 
-from flask import flask 
+from flask import Flask
 from flask import render_template
 from flask import request
 
