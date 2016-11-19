@@ -3,13 +3,13 @@
     <head>
         <title> {{ title }} </title>
     </head>
-    
+
     <body>
         <div id="player">
             <script>
                 var tag = document.createElement('script');
                 tag.src = "https://www.youtube.com/iframe_api";
-                
+
                 var firstScriptTag = document.getElementsByTagName('script')[0];
                 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
@@ -18,20 +18,23 @@
                     player = new YT.Player('player', {
                         height: '390',
                         width: '640',
-                        videoId: '{{ ids[0] }}',
                         events: {
                             'onReady': onPlayerReady                        }
                     });
                 }
-                
+
+                ids = [];
+                {% for id in ids%}
+                    ids.push('{{id}}');
+                {% endfor %}
+
                 function onPlayerReady(event) {
-                    player.cuePlaylist({{ ids }});
-                    player.playVideo();
+                    event.target.loadPlaylist(ids);
                 }
-                
+
             </script>
-            
+
         </div>
     </body>
-    
+
 </html>
