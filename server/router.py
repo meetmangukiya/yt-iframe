@@ -7,6 +7,9 @@ from flask import request
 
 app = Flask(__name__)
 
+def log(string):
+    print("LOG:", string)
+
 @app.route('/')
 def root():     # TMP
     return "You seem to have been stumbled upon a website that is probably not for you" \
