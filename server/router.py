@@ -4,8 +4,9 @@ from flask import request
 
 app = Flask(__name__)
 
-def log(string):
-    print("LOG:", string)
+def log(**kwargs):
+    for kws in kwargs:
+        print("LOG:", kws, ':', kwargs[kws])
 
 @app.route('/')
 def root():
@@ -15,7 +16,7 @@ def root():
 @app.route('/play')
 def play():
     ids = request.args.getlist('id')
-    log("ids:", ids)
+    log(ids=ids)
     return render_template('player.html', ids=ids)
 
 if __name__ == "__main__":
